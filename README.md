@@ -48,7 +48,7 @@ Embedded-note open controls create a new Obsidian tab, preserving the source not
 
 ### Manual release installation
 
-1. Download `codex-style-markdown-1.0.1.zip` and extract it.
+1. Download `codex-style-markdown-1.0.2.zip` and extract it.
 2. Place the `codex-style-markdown` folder in `<vault>/.obsidian/plugins/`.
 3. In Obsidian, open **Settings → Community plugins**, reload installed plugins, and enable **Codex Style Markdown**.
 

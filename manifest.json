@@ -1,9 +1,9 @@
 {
   "id": "codex-style-markdown",
   "name": "Codex Style Markdown",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "minAppVersion": "1.6.0",
-  "description": "Codex Style Markdown reading and Live Preview with themes, code and table copy tools, Mermaid zoom, and responsive typography.",
+  "description": "Enhance reading and Live Preview with themes, code and table tools, Mermaid zoom, and responsive typography.",
   "author": "geekyfoxlab",
   "authorUrl": "https://github.com/geekyfoxlab",
   "isDesktopOnly": false

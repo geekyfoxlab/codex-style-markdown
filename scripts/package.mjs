@@ -11,7 +11,7 @@ await mkdir(deliverables, { recursive: true });
 for (const file of ["main.js", "manifest.json", "styles.css", "versions.json", "README.md", "LICENSE", "CHANGELOG.md"]) {
   await copyFile(path.join(root, file), path.join(output, file));
 }
-const archive = "codex-style-markdown-1.0.1.zip";
+const archive = "codex-style-markdown-1.0.2.zip";
 execFileSync("zip", ["-r", archive, "codex-style-markdown"], {
   cwd: path.join(root, "dist"),
   stdio: "inherit"

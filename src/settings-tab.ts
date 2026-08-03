@@ -15,7 +15,7 @@ export class PolishedMarkdownSettingTab extends PluginSettingTab {
   display(): void {
     const { containerEl } = this;
     containerEl.empty();
-    containerEl.createEl("h2", { text: t("title") });
+    new Setting(containerEl).setName(t("title")).setHeading();
     containerEl.createEl("p", {
       cls: "setting-item-description",
       text: t("intro")
@@ -33,7 +33,7 @@ export class PolishedMarkdownSettingTab extends PluginSettingTab {
     this.toggle(t("reading"), t("readingDesc"), "readingViewEnabled");
     this.toggle(t("livePreview"), t("livePreviewDesc"), "livePreviewEnabled");
 
-    containerEl.createEl("h3", { text: t("appearance") });
+    new Setting(containerEl).setName(t("appearance")).setHeading();
     new Setting(containerEl).setName(t("appearanceMode")).setDesc(t("appearanceModeDesc")).addDropdown((control) => control
       .addOption("auto", t("auto")).addOption("light", t("light")).addOption("dark", t("dark"))
       .setValue(this.plugin.settings.appearanceMode)
@@ -53,7 +53,7 @@ export class PolishedMarkdownSettingTab extends PluginSettingTab {
       });
     }
 
-    containerEl.createEl("h3", { text: t("typography") });
+    new Setting(containerEl).setName(t("typography")).setHeading();
     this.slider(t("width"), t("widthDesc"), "contentWidth", 520, 1200, 20);
     this.text(t("font"), t("fontDesc"), "fontFamily");
     this.slider(t("fontSize"), t("fontSizeDesc"), "fontSize", 13, 22, 1);
@@ -64,7 +64,7 @@ export class PolishedMarkdownSettingTab extends PluginSettingTab {
       .setValue(this.plugin.settings.density)
       .onChange(async (value) => this.plugin.updateSetting("density", value === "compact" ? "compact" : "comfortable")));
 
-    containerEl.createEl("h3", { text: t("code") });
+    new Setting(containerEl).setName(t("code")).setHeading();
     this.slider(t("codeSize"), t("codeSizeDesc"), "codeFontSize", 10, 20, 1);
     this.toggle(t("language"), t("languageDesc"), "showCodeLanguage");
     this.toggle(t("codeCopy"), t("codeCopyDesc"), "showCodeCopyButton");
@@ -72,7 +72,7 @@ export class PolishedMarkdownSettingTab extends PluginSettingTab {
     this.toggle(t("collapse"), t("collapseDesc"), "collapseLongCode");
     this.slider(t("threshold"), t("thresholdDesc"), "collapseThreshold", 8, 200, 1);
 
-    containerEl.createEl("h3", { text: t("richContent") });
+    new Setting(containerEl).setName(t("richContent")).setHeading();
     this.toggle(t("tableCopy"), t("tableCopyDesc"), "showTableCopyButton");
     this.toggle(t("mermaidToolbar"), t("mermaidToolbarDesc"), "showMermaidToolbar");
     this.toggle(t("lightbox"), t("lightboxDesc"), "imageLightbox");

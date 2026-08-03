@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2
+
+- Moved static Mermaid and lightbox styles from TypeScript into CSS.
+- Replaced custom settings headings with Obsidian's native heading API.
+- Updated the manifest description to follow Community directory guidance.
+
 ## 1.0.1
 
 - Renamed the plugin to Codex Style Markdown.

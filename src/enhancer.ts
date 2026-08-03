@@ -396,7 +396,6 @@ export class MarkdownEnhancer {
     scaleLabel.setAttribute("aria-label", "Reset Mermaid zoom");
     const applyScale = (next: number): void => {
       scale = clampMermaidScale(Math.round(next * 100) / 100);
-      mermaid.style.transformOrigin = "top left";
       mermaid.style.transform = `scale(${scale})`;
       canvas.style.width = `${width * scale}px`;
       canvas.style.height = `${height * scale}px`;
@@ -621,9 +620,6 @@ export class MarkdownEnhancer {
     const preview = document.createElement("img");
     preview.src = image.currentSrc || image.src;
     preview.alt = image.alt;
-    preview.style.setProperty("width", "auto", "important");
-    preview.style.setProperty("max-width", "76vw", "important");
-    preview.style.setProperty("max-height", "76vh", "important");
     overlay.appendChild(preview);
     let scale = 1;
     let scaleLabel: HTMLButtonElement | null = null;
