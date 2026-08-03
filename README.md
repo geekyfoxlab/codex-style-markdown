@@ -1,5 +1,7 @@
 # Polished Markdown
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 Polished Markdown is an independent Obsidian plugin for calm, precise Markdown typography and focused reading. It keeps Obsidian's renderer, links, embeds, callouts, Mermaid diagrams, and math support intact.
 
 Polished Markdown is not affiliated with, endorsed by, or sponsored by OpenAI or ChatGPT. Its design and source code are original.
