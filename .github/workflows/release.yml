@@ -38,4 +38,4 @@ jobs:
             main.js
             manifest.json
             styles.css
-            outputs/polished-markdown-*.zip
+            outputs/codex-style-markdown-*.zip

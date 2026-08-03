@@ -1,7 +1,7 @@
 {
-  "name": "polished-markdown",
-  "version": "1.0.0",
-  "description": "Polished Markdown reading and Live Preview with themes, copy tools, and Mermaid zoom for Obsidian.",
+  "name": "codex-style-markdown",
+  "version": "1.0.1",
+  "description": "Codex Style Markdown reading and Live Preview with themes, copy tools, and Mermaid zoom for Obsidian.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
@@ -16,7 +16,7 @@
   "author": "geekyfoxlab",
   "repository": {
     "type": "git",
-    "url": "https://github.com/geekyfoxlab/polished-markdown.git"
+    "url": "https://github.com/geekyfoxlab/codex-style-markdown.git"
   },
   "license": "MIT",
   "devDependencies": {

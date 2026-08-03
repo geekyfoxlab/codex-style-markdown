@@ -1,7 +1,7 @@
 import type { ActivationMode } from "./settings";
 
-export const OPT_IN_CLASS = "polished-markdown-on";
-export const OPT_OUT_CLASS = "polished-markdown-off";
+export const OPT_IN_CLASS = "codex-style-markdown-on";
+export const OPT_OUT_CLASS = "codex-style-markdown-off";
 
 export function shouldEnableForClasses(
   activationMode: ActivationMode,

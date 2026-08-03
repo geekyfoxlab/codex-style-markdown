@@ -7,7 +7,7 @@ import { PolishedMarkdownSettingTab } from "./settings-tab";
 import { OPT_IN_CLASS, OPT_OUT_CLASS } from "./scope";
 import { t } from "./i18n";
 
-const BODY_CLASS = "polished-markdown-enabled";
+const BODY_CLASS = "codex-style-markdown-enabled";
 
 export default class PolishedMarkdownPlugin extends Plugin {
   settings: PolishedMarkdownSettings = { ...DEFAULT_SETTINGS };

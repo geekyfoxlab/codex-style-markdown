@@ -169,7 +169,7 @@ describe("MarkdownEnhancer", () => {
   });
 
   it("does not enhance an opted-out note", () => {
-    document.body.innerHTML = '<div class="markdown-reading-view polished-markdown-off"><div class="markdown-preview-view"><pre><code>one</code></pre></div></div>';
+    document.body.innerHTML = '<div class="markdown-reading-view codex-style-markdown-off"><div class="markdown-preview-view"><pre><code>one</code></pre></div></div>';
     const root = document.querySelector<HTMLElement>(".markdown-reading-view")!;
     new MarkdownEnhancer(() => ({ ...DEFAULT_SETTINGS })).enhance(root);
     expect(root.querySelector(".polished-code-block")).toBeNull();
@@ -181,7 +181,7 @@ describe("MarkdownEnhancer", () => {
     const enhancer = new MarkdownEnhancer(() => ({ ...DEFAULT_SETTINGS }));
     enhancer.enhance(root);
     enhancer.destroy();
-    expect(document.querySelector(".polished-markdown-active")).toBeNull();
+    expect(document.querySelector(".codex-style-markdown-active")).toBeNull();
     expect(document.querySelector(".polished-code-block")).toBeNull();
     expect(document.querySelector("pre code")?.textContent).toBe("one");
   });

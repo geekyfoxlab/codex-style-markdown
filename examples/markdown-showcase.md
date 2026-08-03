@@ -1,5 +1,5 @@
 ---
-title: Polished Markdown Showcase
+title: Codex Style Markdown Showcase
 tags: [markdown, showcase]
 status: ready
 ---
@@ -78,7 +78,7 @@ flowchart LR
 
 ## Media
 
-![Polished Markdown reading view](polished-markdown-showcase.png)
+![Codex Style Markdown reading view](codex-style-markdown-showcase.png)
 
 ## Footnotes
 

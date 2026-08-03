@@ -1,12 +1,12 @@
-# Polished Markdown
+# Codex Style Markdown
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-Polished Markdown is an independent Obsidian plugin for calm, precise Markdown typography and focused reading. It keeps Obsidian's renderer, links, embeds, callouts, Mermaid diagrams, and math support intact.
+Codex Style Markdown is an independent Obsidian plugin for calm, precise Markdown typography and focused reading. It keeps Obsidian's renderer, links, embeds, callouts, Mermaid diagrams, and math support intact.
 
-Polished Markdown is not affiliated with, endorsed by, or sponsored by OpenAI or ChatGPT. Its design and source code are original.
+Codex Style Markdown is not affiliated with, endorsed by, or sponsored by OpenAI, ChatGPT, or Codex. Its design and source code are original.
 
-![Polished Markdown reading view](docs/images/reading-view.png)
+![Codex Style Markdown reading view](docs/images/reading-view.png)
 
 ## Features
 
@@ -48,9 +48,9 @@ Embedded-note open controls create a new Obsidian tab, preserving the source not
 
 ### Manual release installation
 
-1. Download `polished-markdown-1.0.0.zip` and extract it.
-2. Place the `polished-markdown` folder in `<vault>/.obsidian/plugins/`.
-3. In Obsidian, open **Settings → Community plugins**, reload installed plugins, and enable **Polished Markdown**.
+1. Download `codex-style-markdown-1.0.1.zip` and extract it.
+2. Place the `codex-style-markdown` folder in `<vault>/.obsidian/plugins/`.
+3. In Obsidian, open **Settings → Community plugins**, reload installed plugins, and enable **Codex Style Markdown**.
 
 ### Development
 
@@ -59,7 +59,7 @@ npm install
 npm run dev
 ```
 
-Copy or link this repository into `<vault>/.obsidian/plugins/polished-markdown` during development. Run `npm run build` for a production bundle.
+Copy or link this repository into `<vault>/.obsidian/plugins/codex-style-markdown` during development. Run `npm run build` for a production bundle.
 
 ## Activation
 
@@ -68,17 +68,17 @@ The default Global mode applies to every note. Disable it for one note with fron
 ```yaml
 ---
 cssclasses:
-  - polished-markdown-off
+  - codex-style-markdown-off
 ---
 ```
 
-In Opt-in mode, use `polished-markdown-on` instead. The command palette can update the active note automatically.
+In Opt-in mode, use `codex-style-markdown-on` instead. The command palette can update the active note automatically.
 
 ## Commands
 
-- **Polished Markdown: Toggle globally**
-- **Polished Markdown: Toggle for current note**
-- **Polished Markdown: Expand or collapse all code blocks in current note**
+- **Codex Style Markdown: Toggle globally**
+- **Codex Style Markdown: Toggle for current note**
+- **Codex Style Markdown: Expand or collapse all code blocks in current note**
 
 ## Mermaid controls
 

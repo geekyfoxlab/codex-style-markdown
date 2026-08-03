@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.1
+
+- Renamed the plugin to Codex Style Markdown.
+- Changed the plugin ID and activation classes to `codex-style-markdown`.
+- Added a complete Simplified Chinese README.
+- Updated repository, installation, packaging, and release metadata.
+
 ## 1.0.0
 
 - Initial public release.

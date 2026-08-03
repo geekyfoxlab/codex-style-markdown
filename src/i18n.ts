@@ -1,12 +1,12 @@
 import { getLanguage } from "obsidian";
 
 const zh = {
-  title: "Polished Markdown",
+  title: "Codex Style Markdown",
   intro: "在保留 Obsidian Markdown 渲染能力的同时，调整阅读体验。",
-  enable: "启用 Polished Markdown",
+  enable: "启用 Codex Style Markdown",
   enableDesc: "无需卸载插件即可暂停全部效果。",
   activation: "启用范围",
-  activationDesc: "全局模式可用 polished-markdown-off 排除；按需模式需要 polished-markdown-on。",
+  activationDesc: "全局模式可用 codex-style-markdown-off 排除；按需模式需要 codex-style-markdown-on。",
   global: "全局",
   optIn: "按需启用",
   reading: "阅读视图",
@@ -59,18 +59,18 @@ const zh = {
   motion: "减少动态效果",
   motionDesc: "关闭插件动画和过渡。",
   restore: "恢复默认设置",
-  restoreDesc: "重置 Polished Markdown 的所有设置。",
+  restoreDesc: "重置 Codex Style Markdown 的所有设置。",
   restoreButton: "恢复",
-  enabled: "Polished Markdown 已启用。",
-  disabled: "Polished Markdown 已停用。",
+  enabled: "Codex Style Markdown 已启用。",
+  disabled: "Codex Style Markdown 已停用。",
   added: "已添加",
   removed: "已移除"
 } as const;
 
 const en: Record<keyof typeof zh, string> = {
-  title: "Polished Markdown", intro: "Tune the reading experience without replacing Obsidian's Markdown renderer.",
-  enable: "Enable Polished Markdown", enableDesc: "Apply the plugin without unloading it.", activation: "Activation mode",
-  activationDesc: "Global excludes polished-markdown-off; opt-in requires polished-markdown-on.", global: "Global", optIn: "Opt-in",
+  title: "Codex Style Markdown", intro: "Tune the reading experience without replacing Obsidian's Markdown renderer.",
+  enable: "Enable Codex Style Markdown", enableDesc: "Apply the plugin without unloading it.", activation: "Activation mode",
+  activationDesc: "Global excludes codex-style-markdown-off; opt-in requires codex-style-markdown-on.", global: "Global", optIn: "Opt-in",
   reading: "Reading view", readingDesc: "Style rendered Markdown views.", livePreview: "Live Preview", livePreviewDesc: "Style the Live Preview editor.",
   appearance: "Appearance", appearanceMode: "Light and dark mode", appearanceModeDesc: "Follow Obsidian or override Markdown content only.",
   auto: "Follow Obsidian", light: "Light", dark: "Dark", palette: "Color palette", paletteDesc: "Choose the semantic colors used in the content area.",
@@ -83,8 +83,8 @@ const en: Record<keyof typeof zh, string> = {
   threshold: "Collapse threshold", thresholdDesc: "Number of lines before a code block is collapsible.", richContent: "Tables, diagrams and media",
   tableCopy: "Table copy button", tableCopyDesc: "Copy tables as reusable Markdown.", mermaidToolbar: "Mermaid toolbar", mermaidToolbarDesc: "Add zoom, fit, pan and fullscreen controls.",
   lightbox: "Image lightbox", lightboxDesc: "Open rendered note images in a focused overlay.", motion: "Reduce motion", motionDesc: "Disable plugin transitions and animations.",
-  restore: "Restore defaults", restoreDesc: "Reset every Polished Markdown setting.", restoreButton: "Restore", enabled: "Polished Markdown enabled.",
-  disabled: "Polished Markdown disabled.", added: "Added", removed: "Removed"
+  restore: "Restore defaults", restoreDesc: "Reset every Codex Style Markdown setting.", restoreButton: "Restore", enabled: "Codex Style Markdown enabled.",
+  disabled: "Codex Style Markdown disabled.", added: "Added", removed: "Removed"
 };
 
 export type TranslationKey = keyof typeof zh;

@@ -72,7 +72,7 @@ export class MarkdownEnhancer {
     const roots = this.findRoots(container);
     for (const root of roots) {
       const enabled = settings.enabled && shouldEnableForClasses(settings.activationMode, getMarkdownClasses(root));
-      root.classList.toggle("polished-markdown-active", enabled);
+      root.classList.toggle("codex-style-markdown-active", enabled);
       if (!enabled) continue;
       if (sourcePath) root.dataset.polishedSourcePath = sourcePath;
       if (root.matches(".markdown-reading-view, .markdown-preview-view") && settings.readingViewEnabled) {
@@ -93,8 +93,8 @@ export class MarkdownEnhancer {
 
   destroy(): void {
     this.resetEnhancements();
-    for (const root of document.querySelectorAll<HTMLElement>(".polished-markdown-active")) {
-      root.classList.remove("polished-markdown-active");
+    for (const root of document.querySelectorAll<HTMLElement>(".codex-style-markdown-active")) {
+      root.classList.remove("codex-style-markdown-active");
       delete root.dataset.polishedSourcePath;
     }
   }

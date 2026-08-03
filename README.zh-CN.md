@@ -1,12 +1,12 @@
-# Polished Markdown
+# Codex Style Markdown
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-Polished Markdown 是一款独立开发的 Obsidian 第三方插件，用于提供精致、克制且适合长时间阅读的 Markdown 排版。插件保留 Obsidian 原生渲染器，不会替换 Wikilink、嵌入、Callout、Mermaid 或数学公式的原有语义和交互。
+Codex Style Markdown 是一款独立开发的 Obsidian 第三方插件，用于提供精致、克制且适合长时间阅读的 Markdown 排版。插件保留 Obsidian 原生渲染器，不会替换 Wikilink、嵌入、Callout、Mermaid 或数学公式的原有语义和交互。
 
-Polished Markdown 与 OpenAI、ChatGPT 或 Codex 不存在官方关联，也未获得其赞助或背书。插件的设计与源代码均为原创实现。
+Codex Style Markdown 与 OpenAI、ChatGPT 或 Codex 不存在官方关联，也未获得其赞助或背书。插件的设计与源代码均为原创实现。
 
-![Polished Markdown 阅读视图](docs/images/reading-view.png)
+![Codex Style Markdown 阅读视图](docs/images/reading-view.png)
 
 ## 功能特性
 
@@ -49,9 +49,9 @@ Polished Markdown 与 OpenAI、ChatGPT 或 Codex 不存在官方关联，也未�
 
 ### 从 Release 手动安装
 
-1. 下载 `polished-markdown-1.0.0.zip` 并解压。
-2. 将 `polished-markdown` 文件夹放入 `<仓库目录>/.obsidian/plugins/`。
-3. 在 Obsidian 中打开“设置 → 第三方插件”，重新加载插件并启用 Polished Markdown。
+1. 下载 `codex-style-markdown-1.0.1.zip` 并解压。
+2. 将 `codex-style-markdown` 文件夹放入 `<仓库目录>/.obsidian/plugins/`。
+3. 在 Obsidian 中打开“设置 → 第三方插件”，重新加载插件并启用 Codex Style Markdown。
 
 ### 开发安装
 
@@ -60,7 +60,7 @@ npm install
 npm run dev
 ```
 
-开发时，将本仓库复制或链接至 `<仓库目录>/.obsidian/plugins/polished-markdown`。执行 `npm run build` 可生成生产版本。
+开发时，将本仓库复制或链接至 `<仓库目录>/.obsidian/plugins/codex-style-markdown`。执行 `npm run build` 可生成生产版本。
 
 ## 启用方式
 
@@ -69,17 +69,17 @@ npm run dev
 ```yaml
 ---
 cssclasses:
-  - polished-markdown-off
+  - codex-style-markdown-off
 ---
 ```
 
-切换为按需启用模式后，请使用 `polished-markdown-on`。也可以通过命令面板自动切换当前笔记的状态。
+切换为按需启用模式后，请使用 `codex-style-markdown-on`。也可以通过命令面板自动切换当前笔记的状态。
 
 ## 命令
 
-- **Polished Markdown：切换全局效果**
-- **Polished Markdown：切换当前笔记效果**
-- **Polished Markdown：展开或折叠当前笔记的全部代码块**
+- **Codex Style Markdown：切换全局效果**
+- **Codex Style Markdown：切换当前笔记效果**
+- **Codex Style Markdown：展开或折叠当前笔记的全部代码块**
 
 ## Mermaid 控制
 
