@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.3
+
+- Fixed English and Simplified Chinese README links on the Community directory page.
+- Documented clipboard access and the plugin's offline privacy behavior.
+- Adopted Obsidian DOM helpers and cross-window node checks.
+- Wrapped asynchronous copy handlers in void event callbacks.
+- Replaced the deprecated `builtin-modules` package with Node.js built-in metadata.
+- Removed low-value CSS features that generated compatibility warnings.
+
 ## 1.0.2
 
 - Moved static Mermaid and lightbox styles from TypeScript into CSS.

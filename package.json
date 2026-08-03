@@ -1,6 +1,6 @@
 {
   "name": "codex-style-markdown",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Codex Style Markdown reading and Live Preview with themes, copy tools, and Mermaid zoom for Obsidian.",
   "main": "main.js",
   "scripts": {
@@ -12,7 +12,12 @@
     "test:watch": "vitest",
     "package": "npm run build && node scripts/package.mjs"
   },
-  "keywords": ["obsidian", "markdown", "reading", "typography"],
+  "keywords": [
+    "obsidian",
+    "markdown",
+    "reading",
+    "typography"
+  ],
   "author": "geekyfoxlab",
   "repository": {
     "type": "git",
@@ -25,7 +30,6 @@
     "@types/node": "^24.0.0",
     "@typescript-eslint/eslint-plugin": "^8.35.0",
     "@typescript-eslint/parser": "^8.35.0",
-    "builtin-modules": "^4.0.0",
     "esbuild": "^0.25.5",
     "eslint": "^9.29.0",
     "eslint-config-prettier": "^10.1.5",

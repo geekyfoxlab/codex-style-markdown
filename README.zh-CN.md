@@ -1,6 +1,6 @@
 # Codex Style Markdown
 
-[English](README.md) | [简体中文](README.zh-CN.md)
+[English](https://github.com/geekyfoxlab/codex-style-markdown/blob/main/README.md) | [简体中文](https://github.com/geekyfoxlab/codex-style-markdown/blob/main/README.zh-CN.md)
 
 Codex Style Markdown 是一款独立开发的 Obsidian 第三方插件，用于提供精致、克制且适合长时间阅读的 Markdown 排版。插件保留 Obsidian 原生渲染器，不会替换 Wikilink、嵌入、Callout、Mermaid 或数学公式的原有语义和交互。
 
@@ -49,7 +49,7 @@ Codex Style Markdown 与 OpenAI、ChatGPT 或 Codex 不存在官方关联，也�
 
 ### 从 Release 手动安装
 
-1. 下载 `codex-style-markdown-1.0.2.zip` 并解压。
+1. 下载 `codex-style-markdown-1.0.3.zip` 并解压。
 2. 将 `codex-style-markdown` 文件夹放入 `<仓库目录>/.obsidian/plugins/`。
 3. 在 Obsidian 中打开“设置 → 第三方插件”，重新加载插件并启用 Codex Style Markdown。
 
@@ -94,6 +94,10 @@ Mermaid 图表提供缩小、复位百分比、放大、适应宽度、复制 SV
 - **Spectrum**：使用蓝色、青色、琥珀色和玫红色区分标题层级与图表强调色。
 
 代码复制、表格复制和 Mermaid 控件均可单独启用或关闭。
+
+## 隐私与权限
+
+插件不会通过网络发送笔记内容，也不会收集遥测数据。只有当用户主动复制代码、表格或 Mermaid SVG 时，插件才会访问系统剪贴板。
 
 ## 兼容性
 

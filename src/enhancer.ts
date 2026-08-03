@@ -25,7 +25,7 @@ export function isEnhanceableCodeBlock(pre: HTMLPreElement): boolean {
 export function tableToMarkdown(table: HTMLTableElement): string {
   const readNode = (node: Node): string => {
     if (node.nodeType === Node.TEXT_NODE) return node.textContent ?? "";
-    if (node instanceof HTMLElement && node.tagName === "BR") return "\n";
+    if (node.instanceOf(HTMLElement) && node.tagName === "BR") return "\n";
     return [...node.childNodes].map(readNode).join("");
   };
   const rows = [...table.rows].map((row) =>
@@ -158,7 +158,7 @@ export class MarkdownEnhancer {
       const settings = this.getSettings();
       for (const mutation of mutations) {
         for (const node of mutation.addedNodes) {
-          if (!(node instanceof HTMLElement)) continue;
+          if (!node.instanceOf(HTMLElement)) continue;
           if (settings.imageLightbox) {
             if (node.matches("img:not(.emoji):not(.callout-icon img)")) this.enhanceImage(node as HTMLImageElement);
             for (const image of node.querySelectorAll<HTMLImageElement>("img:not(.emoji):not(.callout-icon img)")) this.enhanceImage(image);
@@ -180,25 +180,21 @@ export class MarkdownEnhancer {
 
   private enhanceCodeBlock(pre: HTMLPreElement, settings: PolishedMarkdownSettings): void {
     if (pre.closest(`.${WRAPPER_CLASS}`)) return;
-    const wrapper = document.createElement("div");
-    wrapper.className = WRAPPER_CLASS;
+    const wrapper = createDiv({ cls: WRAPPER_CLASS });
     wrapper.setAttribute(PROCESSED, "true");
     pre.parentNode?.insertBefore(wrapper, pre);
     wrapper.appendChild(pre);
 
-    const toolbar = document.createElement("div");
-    toolbar.className = "polished-code-toolbar";
+    const toolbar = createDiv({ cls: "polished-code-toolbar" });
     wrapper.insertBefore(toolbar, pre);
 
     if (settings.showCodeLanguage) {
-      const language = document.createElement("span");
-      language.className = "polished-code-language";
+      const language = createSpan({ cls: "polished-code-language" });
       language.textContent = detectCodeLanguage(pre);
       toolbar.appendChild(language);
     }
 
-    const actions = document.createElement("div");
-    actions.className = "polished-code-actions";
+    const actions = createDiv({ cls: "polished-code-actions" });
     toolbar.appendChild(actions);
 
     if (settings.showCodeCopyButton) {
@@ -222,16 +218,16 @@ export class MarkdownEnhancer {
           window.setTimeout(() => copy.classList.remove("is-error"), 1600);
         }
       };
-      copy.addEventListener("click", onCopy);
-      this.cleanupCallbacks.add(() => copy.removeEventListener("click", onCopy));
+      const onCopyClick = (): void => { void onCopy(); };
+      copy.addEventListener("click", onCopyClick);
+      this.cleanupCallbacks.add(() => copy.removeEventListener("click", onCopyClick));
       actions.appendChild(copy);
     }
 
     const lines = countCodeLines(pre);
     if (settings.showLineNumbers && lines > 0) {
       wrapper.classList.add("has-line-numbers");
-      const gutter = document.createElement("span");
-      gutter.className = "polished-line-numbers";
+      const gutter = createSpan({ cls: "polished-line-numbers" });
       gutter.setAttribute("aria-hidden", "true");
       gutter.textContent = Array.from({ length: lines }, (_, index) => String(index + 1)).join("\n");
       pre.insertBefore(gutter, pre.firstChild);
@@ -252,22 +248,18 @@ export class MarkdownEnhancer {
 
   private enhanceTable(table: HTMLTableElement, settings: PolishedMarkdownSettings): void {
     if (table.parentElement?.classList.contains("polished-table-scroll")) return;
-    const wrapper = document.createElement("div");
-    wrapper.className = "polished-table-scroll";
+    const wrapper = createDiv({ cls: "polished-table-scroll" });
     wrapper.setAttribute(PROCESSED, "true");
     wrapper.tabIndex = 0;
     wrapper.setAttribute("role", "region");
     wrapper.setAttribute("aria-label", "Scrollable table");
     table.parentNode?.insertBefore(wrapper, table);
     wrapper.appendChild(table);
-    const toolbar = document.createElement("div");
-    toolbar.className = "polished-table-toolbar";
-    const label = document.createElement("span");
-    label.className = "polished-table-label";
+    const toolbar = createDiv({ cls: "polished-table-toolbar" });
+    const label = createSpan({ cls: "polished-table-label" });
     label.textContent = "Table";
     toolbar.appendChild(label);
-    const actions = document.createElement("div");
-    actions.className = "polished-table-actions";
+    const actions = createDiv({ cls: "polished-table-actions" });
     toolbar.appendChild(actions);
     if (settings.showTableCopyButton) {
       const copy = this.iconButton("copy", "Copy table as Markdown", "polished-table-copy");
@@ -290,8 +282,9 @@ export class MarkdownEnhancer {
           window.setTimeout(() => copy.classList.remove("is-error"), 1600);
         }
       };
-      copy.addEventListener("click", onCopy);
-      this.cleanupCallbacks.add(() => copy.removeEventListener("click", onCopy));
+      const onCopyClick = (): void => { void onCopy(); };
+      copy.addEventListener("click", onCopyClick);
+      this.cleanupCallbacks.add(() => copy.removeEventListener("click", onCopyClick));
       actions.appendChild(copy);
     }
     const expand = this.iconButton("maximize-2", "Expand table", "polished-table-expand");
@@ -362,37 +355,29 @@ export class MarkdownEnhancer {
     }
     if (!settings.showMermaidToolbar || !mermaid.querySelector("svg")) return;
 
-    const block = document.createElement("div");
-    block.className = MERMAID_BLOCK_CLASS;
+    const block = createDiv({ cls: MERMAID_BLOCK_CLASS });
     block.setAttribute(PROCESSED, "true");
     mermaid.parentNode?.insertBefore(block, mermaid);
 
-    const toolbar = document.createElement("div");
-    toolbar.className = "polished-mermaid-toolbar";
-    const title = document.createElement("span");
-    title.className = "polished-mermaid-label";
+    const toolbar = createDiv({ cls: "polished-mermaid-toolbar" });
+    const title = createSpan({ cls: "polished-mermaid-label" });
     title.textContent = "Mermaid";
     toolbar.appendChild(title);
-    const actions = document.createElement("div");
-    actions.className = "polished-mermaid-actions";
+    const actions = createDiv({ cls: "polished-mermaid-actions" });
     toolbar.appendChild(actions);
 
-    const viewport = document.createElement("div");
-    viewport.className = "polished-mermaid-viewport";
+    const viewport = createDiv({ cls: "polished-mermaid-viewport" });
     viewport.tabIndex = 0;
     viewport.setAttribute("role", "region");
     viewport.setAttribute("aria-label", "Zoomable Mermaid diagram");
-    const canvas = document.createElement("div");
-    canvas.className = "polished-mermaid-canvas";
+    const canvas = createDiv({ cls: "polished-mermaid-canvas" });
     viewport.appendChild(canvas);
     canvas.appendChild(mermaid);
     block.append(toolbar, viewport);
 
     const { width, height } = getMermaidSize(mermaid);
     let scale = 1;
-    const scaleLabel = document.createElement("button");
-    scaleLabel.type = "button";
-    scaleLabel.className = "polished-mermaid-scale";
+    const scaleLabel = createEl("button", { cls: "polished-mermaid-scale", attr: { type: "button" } });
     scaleLabel.setAttribute("aria-label", "Reset Mermaid zoom");
     const applyScale = (next: number): void => {
       scale = clampMermaidScale(Math.round(next * 100) / 100);
@@ -512,7 +497,8 @@ export class MarkdownEnhancer {
     zoomIn.addEventListener("click", onZoomIn);
     scaleLabel.addEventListener("click", onReset);
     fit.addEventListener("click", onFit);
-    copy.addEventListener("click", onCopy);
+    const onCopyClick = (): void => { void onCopy(); };
+    copy.addEventListener("click", onCopyClick);
     fullscreen.addEventListener("click", onFullscreen);
     document.addEventListener("keydown", onKey);
     viewport.addEventListener("wheel", onWheel, { passive: false });
@@ -538,7 +524,7 @@ export class MarkdownEnhancer {
       zoomIn.removeEventListener("click", onZoomIn);
       scaleLabel.removeEventListener("click", onReset);
       fit.removeEventListener("click", onFit);
-      copy.removeEventListener("click", onCopy);
+      copy.removeEventListener("click", onCopyClick);
       fullscreen.removeEventListener("click", onFullscreen);
       document.removeEventListener("keydown", onKey);
       viewport.removeEventListener("wheel", onWheel);
@@ -611,13 +597,12 @@ export class MarkdownEnhancer {
   private openLightbox(image: HTMLImageElement): void {
     this.closeLightbox();
     this.lightboxTrigger = image;
-    const overlay = document.createElement("div");
-    overlay.className = "polished-lightbox";
+    const overlay = createDiv({ cls: "polished-lightbox" });
     overlay.tabIndex = -1;
     overlay.setAttribute("role", "dialog");
     overlay.setAttribute("aria-modal", "true");
     overlay.setAttribute("aria-label", image.alt || "Image preview");
-    const preview = document.createElement("img");
+    const preview = createEl("img");
     preview.src = image.currentSrc || image.src;
     preview.alt = image.alt;
     overlay.appendChild(preview);
@@ -670,19 +655,17 @@ export class MarkdownEnhancer {
   }
 
   private iconButton(iconName: string, label: string, className: string): HTMLButtonElement {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = className;
-    button.setAttribute("aria-label", label);
-    button.setAttribute("data-tooltip-position", "top");
+    const button = createEl("button", {
+      cls: className,
+      attr: { type: "button", "aria-label": label, "data-tooltip-position": "top" }
+    });
     const icon = getIcon(iconName);
     if (icon) button.appendChild(icon);
     return button;
   }
 
   private createContentOverlay(label: string, closeOverlay: () => void): HTMLElement {
-    const overlay = document.createElement("div");
-    overlay.className = "polished-content-overlay";
+    const overlay = createDiv({ cls: "polished-content-overlay" });
     overlay.setAttribute("role", "dialog");
     overlay.setAttribute("aria-modal", "true");
     overlay.setAttribute("aria-label", label);
@@ -696,12 +679,9 @@ export class MarkdownEnhancer {
   }
 
   private createZoomDock(onZoomOut: () => void, onReset: () => void, onZoomIn: () => void): { element: HTMLElement; scaleLabel: HTMLButtonElement } {
-    const dock = document.createElement("div");
-    dock.className = "polished-overlay-zoom";
+    const dock = createDiv({ cls: "polished-overlay-zoom" });
     const zoomOut = this.iconButton("minus", "Zoom out", "polished-overlay-zoom-button");
-    const scaleLabel = document.createElement("button");
-    scaleLabel.type = "button";
-    scaleLabel.className = "polished-overlay-scale";
+    const scaleLabel = createEl("button", { cls: "polished-overlay-scale", attr: { type: "button" } });
     scaleLabel.textContent = "100%";
     scaleLabel.setAttribute("aria-label", "Reset zoom");
     const zoomIn = this.iconButton("plus", "Zoom in", "polished-overlay-zoom-button");

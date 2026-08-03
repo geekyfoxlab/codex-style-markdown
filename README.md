@@ -1,6 +1,6 @@
 # Codex Style Markdown
 
-[English](README.md) | [简体中文](README.zh-CN.md)
+[English](https://github.com/geekyfoxlab/codex-style-markdown/blob/main/README.md) | [简体中文](https://github.com/geekyfoxlab/codex-style-markdown/blob/main/README.zh-CN.md)
 
 Codex Style Markdown is an independent Obsidian plugin for calm, precise Markdown typography and focused reading. It keeps Obsidian's renderer, links, embeds, callouts, Mermaid diagrams, and math support intact.
 
@@ -48,7 +48,7 @@ Embedded-note open controls create a new Obsidian tab, preserving the source not
 
 ### Manual release installation
 
-1. Download `codex-style-markdown-1.0.2.zip` and extract it.
+1. Download `codex-style-markdown-1.0.3.zip` and extract it.
 2. Place the `codex-style-markdown` folder in `<vault>/.obsidian/plugins/`.
 3. In Obsidian, open **Settings → Community plugins**, reload installed plugins, and enable **Codex Style Markdown**.
 
@@ -93,6 +93,10 @@ The appearance mode can follow Obsidian or force Light/Dark styling for the Mark
 - **Spectrum** uses blue, teal, amber, and rose to distinguish heading levels and diagram accents.
 
 Code copy, table copy, and Mermaid controls can be enabled separately.
+
+## Privacy and permissions
+
+The plugin does not send note content over the network and does not collect telemetry. Clipboard access is used only after an explicit copy action for code, tables, or Mermaid SVG content.
 
 ## Compatibility
 
