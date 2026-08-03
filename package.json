@@ -1,7 +1,7 @@
 {
   "name": "codex-style-markdown",
   "version": "1.0.3",
-  "description": "Codex Style Markdown reading and Live Preview with themes, copy tools, and Mermaid zoom for Obsidian.",
+  "description": "A unified Obsidian reading and Live Preview experience with refined typography, Markdown copy tools, and proportional Mermaid zoom.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
@@ -14,9 +14,17 @@
   },
   "keywords": [
     "obsidian",
+    "obsidian-plugin",
+    "obsidian-md",
     "markdown",
-    "reading",
-    "typography"
+    "typography",
+    "reading-view",
+    "live-preview",
+    "code-blocks",
+    "markdown-tables",
+    "mermaid",
+    "image-viewer",
+    "knowledge-management"
   ],
   "author": "geekyfoxlab",
   "repository": {

@@ -2,11 +2,22 @@
 
 [English](https://github.com/geekyfoxlab/codex-style-markdown/blob/main/README.md) | [简体中文](https://github.com/geekyfoxlab/codex-style-markdown/blob/main/README.zh-CN.md)
 
-Codex Style Markdown 是一款独立开发的 Obsidian 第三方插件，用于提供精致、克制且适合长时间阅读的 Markdown 排版。插件保留 Obsidian 原生渲染器，不会替换 Wikilink、嵌入、Callout、Mermaid 或数学公式的原有语义和交互。
+Codex Style Markdown 为 Obsidian 的阅读视图和 Live Preview 提供一套统一、精致的视觉系统。它在优化长文排版的同时，为代码、表格、图片、Mermaid 图表和嵌入内容补充实用控件，并完整保留 Obsidian 原生渲染器与语义。
 
 Codex Style Markdown 与 OpenAI、ChatGPT 或 Codex 不存在官方关联，也未获得其赞助或背书。插件的设计与源代码均为原创实现。
 
 ![Codex Style Markdown 阅读视图](docs/images/reading-view.png)
+
+## 解决的问题
+
+- 让阅读视图与 Live Preview 不再像两套互不相关的文档样式。
+- 宽表格、长代码、大图片和复杂 Mermaid 图表无需离开笔记即可清晰查看。
+- 表格复制结果可直接复用为 Markdown，而不是难以整理的单元格文本。
+- 在提升视觉效果的同时，不替换或破坏 Wikilink、Callout、嵌入、KaTeX、Mermaid 和 Properties。
+
+## 与同类工具的区别
+
+它不是只处理某一种元素的样式插件。原本需要分别安装排版、代码块、表格、图片查看和 Mermaid 缩放工具的体验，被整合进同一套受作用域保护的视觉系统；单篇笔记开关、多套配色、媒体等比缩放、移动端布局、打印样式和减少动态效果也会协同工作。
 
 ## 功能特性
 

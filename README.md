@@ -2,11 +2,22 @@
 
 [English](https://github.com/geekyfoxlab/codex-style-markdown/blob/main/README.md) | [简体中文](https://github.com/geekyfoxlab/codex-style-markdown/blob/main/README.zh-CN.md)
 
-Codex Style Markdown is an independent Obsidian plugin for calm, precise Markdown typography and focused reading. It keeps Obsidian's renderer, links, embeds, callouts, Mermaid diagrams, and math support intact.
+Codex Style Markdown gives Obsidian one coherent, polished visual system across Reading view and Live Preview. It improves long-form typography and adds practical controls for code, tables, images, Mermaid diagrams, and embedded content while keeping Obsidian's native renderer and semantics intact.
 
 Codex Style Markdown is not affiliated with, endorsed by, or sponsored by OpenAI, ChatGPT, or Codex. Its design and source code are original.
 
 ![Codex Style Markdown reading view](docs/images/reading-view.png)
+
+## Problems solved
+
+- Reading view and Live Preview no longer feel like two unrelated documents.
+- Wide tables, long code, large images, and dense Mermaid diagrams remain readable without leaving the note.
+- Copying a table produces reusable Markdown instead of awkward cell text.
+- Visual refinement does not replace or break Wikilinks, Callouts, embeds, KaTeX, Mermaid, or Properties.
+
+## What makes it different
+
+Instead of requiring separate typography, code-block, table, image-viewer, and Mermaid-zoom plugins, Codex Style Markdown coordinates these surfaces in one scoped visual system. Per-note activation, multiple palettes, proportional media zoom, mobile layouts, print styles, and reduced-motion support are designed to work together.
 
 ## Features
 
