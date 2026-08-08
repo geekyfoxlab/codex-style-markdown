@@ -150,6 +150,18 @@ describe("MarkdownEnhancer", () => {
     enhancer.destroy();
   });
 
+  it("enhances tables inserted asynchronously after the initial render", async () => {
+    document.body.innerHTML = '<div class="markdown-reading-view"><div class="markdown-preview-view"><div id="later"></div></div></div>';
+    const root = document.querySelector<HTMLElement>(".markdown-reading-view")!;
+    const enhancer = new MarkdownEnhancer(() => ({ ...DEFAULT_SETTINGS }));
+    enhancer.enhance(root);
+    root.querySelector("#later")!.innerHTML = "<table><tr><th>Wide heading</th></tr><tr><td>Value</td></tr></table>";
+    await new Promise((resolve) => window.setTimeout(resolve, 0));
+    expect(root.querySelectorAll(".polished-table-scroll")).toHaveLength(1);
+    expect(root.querySelector(".polished-table-viewport > table")).not.toBeNull();
+    enhancer.destroy();
+  });
+
   it("opens embedded notes in a new tab with the source path", () => {
     document.body.innerHTML = '<div class="markdown-reading-view"><div class="markdown-embed internal-embed" src="Another note"><a class="markdown-embed-link" href="Another note"></a></div></div>';
     const root = document.querySelector<HTMLElement>(".markdown-reading-view")!;
@@ -164,7 +176,21 @@ describe("MarkdownEnhancer", () => {
     enhancer.enhance(root, "Folder/Source.md");
     root.querySelector<HTMLElement>(".markdown-embed-link")?.click();
     expect(opened).toEqual([{ linktext: "Another note", sourcePath: "Folder/Source.md" }]);
-    expect(root.querySelector(".markdown-embed-link")?.getAttribute("aria-label")).toBe("Open embedded note in new tab");
+    expect(root.querySelector(".markdown-embed-link")?.getAttribute("aria-label")).toBe("Open internal link in new tab");
+    enhancer.destroy();
+  });
+
+  it("opens regular internal links in a new tab when enabled", () => {
+    document.body.innerHTML = '<div class="markdown-reading-view"><a class="internal-link" data-href="Target#Section" href="Target#Section">Target</a></div>';
+    const root = document.querySelector<HTMLElement>(".markdown-reading-view")!;
+    const opened: string[] = [];
+    const enhancer = new MarkdownEnhancer(
+      () => ({ ...DEFAULT_SETTINGS }),
+      (linktext) => { opened.push(linktext); return Promise.resolve(); }
+    );
+    enhancer.enhance(root, "Source.md");
+    root.querySelector<HTMLElement>("a.internal-link")?.click();
+    expect(opened).toEqual(["Target#Section"]);
     enhancer.destroy();
   });
 

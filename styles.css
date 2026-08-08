@@ -362,19 +362,21 @@ body.codex-style-markdown-enabled .codex-style-markdown-active :not(pre) > code 
 .polished-code-block.has-line-numbers pre { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1rem; }
 .polished-line-numbers { position: sticky; left: 0; color: var(--text-faint); text-align: right; user-select: none; white-space: pre; }
 
-.polished-table-scroll { position: relative; max-width: 100%; margin: 0.68em 0 0.82em; overflow-x: auto; border: 0; border-radius: 0; }
+.polished-table-scroll { position: relative; max-width: 100%; margin: 0.68em 0 0.82em; border: 0; border-radius: 0; }
 .polished-table-scroll:focus-visible { outline: 2px solid var(--interactive-accent); outline-offset: 2px; }
-.polished-table-toolbar { position: absolute; top: 1px; right: 2px; z-index: 2; display: flex; height: 28px; align-items: center; justify-content: flex-end; padding: 0; border: 0; background: transparent; }
+.polished-table-toolbar { position: relative; z-index: 2; display: flex; height: 32px; align-items: center; justify-content: flex-end; padding: 0 2px; border: 0; border-bottom: 1px solid var(--polished-border); background: transparent; }
 .polished-table-label { display: none; }
 .polished-table-actions { display: flex; gap: 2px; }
-.polished-table-scroll table { width: 100%; margin: 0 !important; border: 0; border-collapse: collapse; }
-.polished-table-scroll :is(th, td) { min-width: 6.75rem; padding: 0.48rem 0.62rem; border: 0; border-bottom: 1px solid var(--polished-border); text-align: start; }
+.polished-table-viewport { max-width: 100%; overflow: auto; overscroll-behavior: contain; }
+.polished-table-viewport:focus-visible { outline: 2px solid var(--interactive-accent); outline-offset: -2px; }
+.polished-table-scroll table { width: max-content; min-width: 100%; margin: 0 !important; border: 0; border-collapse: collapse; table-layout: auto; }
+.polished-table-scroll :is(th, td) { min-width: 8rem; padding: 0.48rem 0.62rem; border: 0; border-bottom: 1px solid var(--polished-border); text-align: start; overflow-wrap: normal; word-break: normal; }
 .polished-table-scroll th { color: var(--polished-text); background: transparent; font-weight: 650; }
-.polished-table-scroll th:last-child { padding-right: 2.8rem; }
 .polished-table-scroll tr:last-child td { border-bottom: 0; }
 .polished-table-scroll tbody tr:hover { background: color-mix(in srgb, var(--text-normal) 4%, transparent); }
-.polished-table-scroll.is-expanded { width: min(860px, calc(100vw - 160px)); max-height: min(70vh, 680px); margin: 0; padding: 22px; overflow: auto; border-radius: 10px; background: var(--polished-page); box-shadow: 0 24px 80px rgb(0 0 0 / 0.28); }
-.polished-table-scroll.is-expanded .polished-table-toolbar { top: 6px; right: 6px; }
+.polished-table-scroll.is-expanded { width: max-content; min-width: min(100%, 640px); max-width: none; margin: 0; padding: 0; overflow: visible; border-radius: 8px; background: var(--polished-page); box-shadow: 0 24px 80px rgb(0 0 0 / 0.28); }
+.polished-table-scroll.is-expanded .polished-table-viewport { width: max-content; max-width: none; max-height: none; overflow: visible; }
+.polished-table-scroll.is-expanded .polished-table-toolbar { min-width: 100%; }
 
 .polished-mermaid-block { position: relative; margin: 1.1em 0; border: 1px solid var(--polished-border); border-radius: var(--polished-radius); background: var(--polished-surface); overflow: hidden; }
 .polished-mermaid-toolbar { position: absolute; top: 6px; right: 6px; z-index: 3; display: flex; min-height: 30px; align-items: center; justify-content: flex-end; padding: 0; border: 0; border-radius: 7px; background: color-mix(in srgb, var(--polished-surface) 90%, transparent); backdrop-filter: blur(5px); }
@@ -509,7 +511,7 @@ body.codex-style-markdown-enabled .codex-style-markdown-active img[data-polished
 .polished-lightbox {
   padding: 56px;
 }
-.polished-lightbox img { width: auto !important; max-width: 76vw !important; height: auto !important; max-height: 76vh !important; object-fit: contain; border-radius: 10px; background: var(--polished-page); box-shadow: 0 24px 80px rgb(0 0 0 / 0.32); }
+.polished-lightbox img { width: auto !important; max-width: min(76vw, 1200px) !important; height: auto !important; max-height: none !important; object-fit: contain; transform-origin: center; border-radius: 10px; background: var(--polished-page); box-shadow: 0 24px 80px rgb(0 0 0 / 0.32); }
 .polished-lightbox-close { position: fixed; top: 16px; right: 16px; width: 38px; height: 38px; border-radius: 50%; color: #202124 !important; background: #f5f5f3 !important; box-shadow: 0 2px 12px rgb(0 0 0 / 0.2) !important; }
 .polished-lightbox-close:hover { background: #ffffff !important; }
 body.polished-lightbox-open { overflow: hidden; }

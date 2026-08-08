@@ -123,7 +123,7 @@ export class MarkdownEnhancer {
       wrapper.remove();
     }
     for (const wrapper of document.querySelectorAll<HTMLElement>(".polished-table-scroll")) {
-      const table = wrapper.querySelector<HTMLTableElement>(":scope > table");
+      const table = wrapper.querySelector<HTMLTableElement>(":scope > .polished-table-viewport > table");
       if (table && wrapper.parentNode) wrapper.parentNode.insertBefore(table, wrapper);
       wrapper.remove();
     }
@@ -146,8 +146,10 @@ export class MarkdownEnhancer {
       for (const image of root.querySelectorAll<HTMLImageElement>("img:not(.emoji):not(.callout-icon img)")) this.enhanceImage(image);
     }
     for (const mermaid of root.querySelectorAll<HTMLElement>(".mermaid")) this.enhanceMermaid(mermaid, settings);
-    for (const link of root.querySelectorAll<HTMLElement>(".markdown-embed.internal-embed .markdown-embed-link")) {
-      this.enhanceEmbeddedNoteLink(link, root);
+    if (settings.openInternalLinksInNewTab) {
+      for (const link of root.querySelectorAll<HTMLElement>("a.internal-link, .markdown-embed.internal-embed .markdown-embed-link")) {
+        this.enhanceInternalLink(link, root);
+      }
     }
     this.observeMermaid(root);
   }
@@ -163,13 +165,17 @@ export class MarkdownEnhancer {
             if (node.matches("img:not(.emoji):not(.callout-icon img)")) this.enhanceImage(node as HTMLImageElement);
             for (const image of node.querySelectorAll<HTMLImageElement>("img:not(.emoji):not(.callout-icon img)")) this.enhanceImage(image);
           }
+          if (node.matches("table")) this.enhanceTable(node as HTMLTableElement, settings);
+          for (const table of node.querySelectorAll<HTMLTableElement>("table")) this.enhanceTable(table, settings);
           if (node.matches(".mermaid")) this.enhanceMermaid(node, settings);
           for (const mermaid of node.querySelectorAll<HTMLElement>(".mermaid")) this.enhanceMermaid(mermaid, settings);
-          if (node.matches(".markdown-embed-link") && node.closest(".markdown-embed.internal-embed")) {
-            this.enhanceEmbeddedNoteLink(node, root);
+          if (settings.openInternalLinksInNewTab && node.matches("a.internal-link, .markdown-embed.internal-embed .markdown-embed-link")) {
+            this.enhanceInternalLink(node, root);
           }
-          for (const link of node.querySelectorAll<HTMLElement>(".markdown-embed.internal-embed .markdown-embed-link")) {
-            this.enhanceEmbeddedNoteLink(link, root);
+          if (settings.openInternalLinksInNewTab) {
+            for (const link of node.querySelectorAll<HTMLElement>("a.internal-link, .markdown-embed.internal-embed .markdown-embed-link")) {
+              this.enhanceInternalLink(link, root);
+            }
           }
         }
       }
@@ -247,14 +253,20 @@ export class MarkdownEnhancer {
   }
 
   private enhanceTable(table: HTMLTableElement, settings: PolishedMarkdownSettings): void {
-    if (table.parentElement?.classList.contains("polished-table-scroll")) return;
+    if (table.closest(".polished-table-scroll")) return;
     const wrapper = createDiv({ cls: "polished-table-scroll" });
     wrapper.setAttribute(PROCESSED, "true");
     wrapper.tabIndex = 0;
     wrapper.setAttribute("role", "region");
     wrapper.setAttribute("aria-label", "Scrollable table");
     table.parentNode?.insertBefore(wrapper, table);
-    wrapper.appendChild(table);
+    const viewport = createDiv({ cls: "polished-table-viewport" });
+    viewport.tabIndex = 0;
+    viewport.setAttribute("role", "region");
+    viewport.setAttribute("aria-label", "Scrollable table content");
+    viewport.appendChild(table);
+    wrapper.appendChild(viewport);
+    if (!settings.showTableToolbar) return;
     const toolbar = createDiv({ cls: "polished-table-toolbar" });
     const label = createSpan({ cls: "polished-table-label" });
     label.textContent = "Table";
@@ -289,7 +301,7 @@ export class MarkdownEnhancer {
     }
     const expand = this.iconButton("maximize-2", "Expand table", "polished-table-expand");
     actions.appendChild(expand);
-    wrapper.insertBefore(toolbar, table);
+    wrapper.insertBefore(toolbar, viewport);
 
     let placeholder: Comment | null = null;
     let overlay: HTMLElement | null = null;
@@ -313,7 +325,7 @@ export class MarkdownEnhancer {
         );
         scaleLabel = zoom.scaleLabel;
         overlay.appendChild(zoom.element);
-        overlay.addEventListener("wheel", (event) => {
+        viewport.addEventListener("wheel", (event) => {
           event.preventDefault();
           applyExpandedScale(expandedScale + (event.deltaY < 0 ? 0.1 : -0.1));
         }, { passive: false });
@@ -544,7 +556,7 @@ export class MarkdownEnhancer {
     applyScale(1);
   }
 
-  private enhanceEmbeddedNoteLink(link: HTMLElement, root: HTMLElement): void {
+  private enhanceInternalLink(link: HTMLElement, root: HTMLElement): void {
     if (link.dataset.polishedNewTab === "true") return;
     const embed = link.closest<HTMLElement>(".markdown-embed.internal-embed");
     const linktext = embed?.getAttribute("src")
@@ -552,7 +564,7 @@ export class MarkdownEnhancer {
       ?? link.getAttribute("href");
     if (!linktext) return;
     link.dataset.polishedNewTab = "true";
-    link.setAttribute("aria-label", "Open embedded note in new tab");
+    link.setAttribute("aria-label", "Open internal link in new tab");
     const onClick = (event: MouseEvent): void => {
       event.preventDefault();
       event.stopImmediatePropagation();
@@ -562,6 +574,7 @@ export class MarkdownEnhancer {
     this.cleanupCallbacks.add(() => {
       link.removeEventListener("click", onClick, true);
       delete link.dataset.polishedNewTab;
+      link.removeAttribute("aria-label");
     });
   }
 

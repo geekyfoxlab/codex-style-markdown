@@ -4,7 +4,7 @@ import type PolishedMarkdownPlugin from "./main";
 import { DEFAULT_SETTINGS } from "./settings";
 import { t } from "./i18n";
 
-type BooleanSettingKey = "enabled" | "readingViewEnabled" | "livePreviewEnabled" | "showCodeLanguage" | "showCodeCopyButton" | "showTableCopyButton" | "showMermaidToolbar" | "showLineNumbers" | "collapseLongCode" | "imageLightbox" | "reduceMotion";
+type BooleanSettingKey = "enabled" | "readingViewEnabled" | "livePreviewEnabled" | "defaultToReadingView" | "openInternalLinksInNewTab" | "showCodeLanguage" | "showCodeCopyButton" | "showTableCopyButton" | "showTableToolbar" | "showMermaidToolbar" | "showLineNumbers" | "collapseLongCode" | "imageLightbox" | "reduceMotion";
 type NumberSettingKey = "contentWidth" | "fontSize" | "lineHeight" | "codeFontSize" | "collapseThreshold";
 
 export class PolishedMarkdownSettingTab extends PluginSettingTab {
@@ -32,6 +32,8 @@ export class PolishedMarkdownSettingTab extends PluginSettingTab {
         .onChange(async (value) => this.plugin.updateSetting("activationMode", value === "opt-in" ? "opt-in" : "global")));
     this.toggle(t("reading"), t("readingDesc"), "readingViewEnabled");
     this.toggle(t("livePreview"), t("livePreviewDesc"), "livePreviewEnabled");
+    this.toggle(t("defaultReading"), t("defaultReadingDesc"), "defaultToReadingView");
+    this.toggle(t("internalLinks"), t("internalLinksDesc"), "openInternalLinksInNewTab");
 
     new Setting(containerEl).setName(t("appearance")).setHeading();
     new Setting(containerEl).setName(t("appearanceMode")).setDesc(t("appearanceModeDesc")).addDropdown((control) => control
@@ -73,6 +75,7 @@ export class PolishedMarkdownSettingTab extends PluginSettingTab {
     this.slider(t("threshold"), t("thresholdDesc"), "collapseThreshold", 8, 200, 1);
 
     new Setting(containerEl).setName(t("richContent")).setHeading();
+    this.toggle(t("tableToolbar"), t("tableToolbarDesc"), "showTableToolbar");
     this.toggle(t("tableCopy"), t("tableCopyDesc"), "showTableCopyButton");
     this.toggle(t("mermaidToolbar"), t("mermaidToolbarDesc"), "showMermaidToolbar");
     this.toggle(t("lightbox"), t("lightboxDesc"), "imageLightbox");

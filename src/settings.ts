@@ -8,6 +8,8 @@ export interface PolishedMarkdownSettings {
   activationMode: ActivationMode;
   readingViewEnabled: boolean;
   livePreviewEnabled: boolean;
+  defaultToReadingView: boolean;
+  openInternalLinksInNewTab: boolean;
   contentWidth: number;
   fontFamily: string;
   fontSize: number;
@@ -19,6 +21,7 @@ export interface PolishedMarkdownSettings {
   showCodeLanguage: boolean;
   showCodeCopyButton: boolean;
   showTableCopyButton: boolean;
+  showTableToolbar: boolean;
   showMermaidToolbar: boolean;
   showLineNumbers: boolean;
   collapseLongCode: boolean;
@@ -32,6 +35,8 @@ export const DEFAULT_SETTINGS: Readonly<PolishedMarkdownSettings> = {
   activationMode: "global",
   readingViewEnabled: true,
   livePreviewEnabled: true,
+  defaultToReadingView: true,
+  openInternalLinksInNewTab: true,
   contentWidth: 740,
   fontFamily: "var(--font-text)",
   fontSize: 16,
@@ -43,6 +48,7 @@ export const DEFAULT_SETTINGS: Readonly<PolishedMarkdownSettings> = {
   showCodeLanguage: true,
   showCodeCopyButton: true,
   showTableCopyButton: true,
+  showTableToolbar: true,
   showMermaidToolbar: true,
   showLineNumbers: false,
   collapseLongCode: true,

@@ -1,4 +1,5 @@
 import { MarkdownView, Notice, Plugin } from "obsidian";
+import type { TFile } from "obsidian";
 import { Prec } from "@codemirror/state";
 import { EditorView } from "@codemirror/view";
 import { MarkdownEnhancer } from "./enhancer";
@@ -27,6 +28,18 @@ export default class PolishedMarkdownPlugin extends Plugin {
     })));
     this.registerEvent(this.app.workspace.on("layout-change", () => this.refreshViews()));
     this.registerEvent(this.app.workspace.on("active-leaf-change", () => this.refreshViews()));
+    this.registerEvent(this.app.workspace.on("file-open", (file: TFile | null) => {
+      if (!file || !this.settings.defaultToReadingView) return;
+      const enforceReadingView = (): void => {
+        this.app.workspace.iterateAllLeaves((leaf) => {
+          if (!(leaf.view instanceof MarkdownView) || leaf.view.file?.path !== file.path || leaf.view.getMode() === "preview") return;
+          const state = leaf.getViewState();
+          void leaf.setViewState({ ...state, state: { ...(state.state ?? {}), mode: "preview" } }, { history: false });
+        });
+      };
+      enforceReadingView();
+      window.setTimeout(enforceReadingView, 120);
+    }));
 
     this.addCommand({
       id: "toggle-enabled",
