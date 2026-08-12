@@ -60,7 +60,7 @@ Codex Style Markdown 与 OpenAI、ChatGPT 或 Codex 不存在官方关联，也�
 
 ### 从 Release 手动安装
 
-1. 下载 `codex-style-markdown-1.0.3.zip` 并解压。
+1. 下载 `codex-style-markdown-1.0.4.zip` 并解压。
 2. 将 `codex-style-markdown` 文件夹放入 `<仓库目录>/.obsidian/plugins/`。
 3. 在 Obsidian 中打开“设置 → 第三方插件”，重新加载插件并启用 Codex Style Markdown。
 
