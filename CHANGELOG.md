@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.5
+
+- Restored compatibility with the declared Obsidian 1.6.0 minimum version by avoiding a newer language API.
+- Added the unified table expansion, dynamic table enhancement, internal-link tab behavior, and configurable default Reading view introduced in 1.0.4.
+
 ## 1.0.3
 
 - Fixed English and Simplified Chinese README links on the Community directory page.

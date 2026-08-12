@@ -1,6 +1,6 @@
 {
   "name": "codex-style-markdown",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A unified Obsidian reading and Live Preview experience with refined typography, Markdown copy tools, and proportional Mermaid zoom.",
   "main": "main.js",
   "scripts": {

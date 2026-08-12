@@ -1,5 +1,3 @@
-import { getLanguage } from "obsidian";
-
 const zh = {
   title: "Codex Style Markdown",
   intro: "在保留 Obsidian Markdown 渲染能力的同时，调整阅读体验。",
@@ -99,5 +97,6 @@ const en: Record<keyof typeof zh, string> = {
 export type TranslationKey = keyof typeof zh;
 
 export function t(key: TranslationKey): string {
-  return getLanguage().toLowerCase().startsWith("zh") ? zh[key] : en[key];
+  const language = document.documentElement.lang || navigator.language;
+  return language.toLowerCase().startsWith("zh") ? zh[key] : en[key];
 }
